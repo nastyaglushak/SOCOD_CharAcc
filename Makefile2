@@ -1,0 +1,12 @@
+all: countchmass
+
+countchmass: main.o countchmass.o
+	g++ countchmass.o main.o -o countchmass
+
+countchmass.o: countchmass.cpp 
+	g++ -c countchmass.cpp 
+
+main.o: main.cpp
+	g++ -c main.cpp
+clean:
+	rm -rf *.o countchmass
