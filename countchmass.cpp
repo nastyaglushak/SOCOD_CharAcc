@@ -1,5 +1,4 @@
 #include"countchmass.hpp"
-#include <fstream>
 
 CountCharMass::CountCharMass(int ChNum, int CntNum){
     cout<<"Class Constructor"<<endl;
@@ -22,7 +21,7 @@ int CountCharMass::GetCntNum(){
 }
 
 void CountCharMass::DataGen(vector<int>& dataVec){
-    for (int i=0; i<CntNum; i++){
+    for (int i=0; i<CntNum; ++i){
         dataVec.push_back(i);
     }
 }
@@ -41,10 +40,19 @@ vector<int>* CountCharMass::GetData(){
     return inData;
 }
 
+vector<int> CountCharMass::DataAccum(const vector<int>& dataVec1) {
+    for(size_t i=0; i<dataVec1.size(); ++i){
+        cout<<dataVec1[i]<<" "<<inValData[i]<<" "<<i<<endl;
+        inValData[i]+=dataVec1[i];
+    }
+    return inValData;
+}
+
+//Problems with output
 void CountCharMass::DataVectorOut(){
     cout<<"Data Vector Out"<<endl;
     for (int i:inValData){
-        cout<<inValData[i-1]<<" ";//Why does this vector shift by -1? Don't want to use the shift to "-1"
+        cout<<inValData[i]<<" ";
     }
     cout<<endl;
 
@@ -57,38 +65,4 @@ void CountCharMass::DataVectorOut(){
     cout<<endl;
 }
 
-int main(){
-    CountCharMass ChArray(5, 10);
-    cout<<"First iter: "<<ChArray.GetChNum()<<" "<<ChArray.GetCntNum()<<"\n"<<endl;
-
-    vector<int> dataVec;
-    ChArray.DataGen(dataVec);
-
-    cout<<"DataVec Out"<<endl;
-    for (int s: dataVec){
-        cout<<s<<" ";
-    }
-    cout<<endl;
-
-    vector<int> dataVec2={1,2,3,4,5};
-    cout<<"Data Analyse Check "<<ChArray.DataAnalyse(dataVec2)<<endl;
-
-    ChArray.DataVectorOut();
-
-    //Reading values from file
-    /*ifstream ifile ("test.txt", ios::in);
-    string line;
-    vector<int> inData;
-    if (ifile.is_open()){
-		while (ifile>>line){
-			inData.push_back(stof(line));
-		}	
-    }
-
-    for (int s: inData){
-        cout<<s<<"\n";
-    }
-	ifile.close();*/
-    return 0;
-}
 
