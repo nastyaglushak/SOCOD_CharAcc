@@ -1,5 +1,5 @@
-#ifndef COUNTCHMASS_H
-#define COUNTCHMASS_H
+#ifndef COUNTCHMASS_HPP
+#define COUNTCHMASS_HPP
 
 #include <iostream>
 #include<vector>
