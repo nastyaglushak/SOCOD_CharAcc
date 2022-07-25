@@ -32,13 +32,13 @@ int main(){
 
     ChArray.DataVectorOut();
 
-    vector<int> dataVec3={1,2,3,4,5};
+    /*vector<int> dataVec3={1,2,3,4,5};
 
     ChArray.DataAccum(dataVec3);
     ChArray.DataVectorOut();
 
     ChArray.DataAccum(dataVec2);
-    ChArray.DataVectorOut();
+    ChArray.DataVectorOut();*/
 
     return 0;
 }
