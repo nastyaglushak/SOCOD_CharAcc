@@ -48,20 +48,14 @@ vector<int> CountCharMass::DataAccum(const vector<int>& dataVec1) {
     return inValData;
 }
 
-//Problems with output
+
 void CountCharMass::DataVectorOut(){
     cout<<"Data Vector Out"<<endl;
-    for (int i:inValData){
-        cout<<inValData[i]<<" ";
-    }
+    copy(inValData.begin(), inValData.end(),ostream_iterator<int>(cout, " "));
     cout<<endl;
 
     cout<<"Data Vector Out (Show Adress)"<<endl;
-    vector<int>::iterator cnt;
-    cnt=inData->begin();
-    for (; cnt != inData->end(); cnt++){
-        cout<<" "<< inData;// How to show what is written in this vector?
-    }
+    copy(inData->begin(), inData->end(),ostream_iterator<int>(cout, " "));
     cout<<endl;
 }
 
