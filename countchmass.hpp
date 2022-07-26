@@ -5,20 +5,21 @@
 #include<vector>
 #include<string>
 #include<iterator>
+#include"socod.hpp"
 using namespace std;
 
 class CountCharMass {
 public:
     CountCharMass(int ChNum, int CntNum);
     ~CountCharMass();
-    int GetChNum();
-    int GetCntNum();
-    void DataGen(vector<int>& dataVec);
-    int DataAnalyse(vector<int>& dataVec);
-    void DataVectorOut();
-    vector<int>* GetData();
     vector<int> DataAccum(const vector<int>& dataVec1);
+    void DataVectorOut();
+
+    void DataAnalyse(vector<int>& dataVec);
+    vector<int>* GetData();
 private:
+    SOCOD *socod;
+    CountCharMass *countarr;
     int ChNum; //number of characteristics
     int CntNum;//number of counts
     vector<int>* inData;//address of input data array
