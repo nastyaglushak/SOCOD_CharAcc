@@ -5,21 +5,23 @@
 #include<vector>
 #include<string>
 #include <fstream>
+#include<iterator>
+
 using namespace std;
 
 class SOCOD{
     private:
-        vector<int> acquiredDataVec;
-        vector<int> processDataVec;
         vector<int>* processData;//output vector data
         vector<int>* acquiredData;//vector to save in accumulator
-        int channelNum=4;
-        int frameNum=5;
+        const int THRNum=4;//number of THR
+        const int chNum=96;//number of channels
     public:
         SOCOD();
         ~SOCOD();
-        void GetData(vector<int>& acquiredDataVec);
-        vector<int> ProcessData(const vector<int>& acquiredDataVec);
+        void GetDataFromFile();
+        void GetRandomData();
+        void ProcessData();
+        void DataVectorOut();
         vector<int>* GetAccData();
         vector<int>* GetProcessData();
 };
