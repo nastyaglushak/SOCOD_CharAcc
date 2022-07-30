@@ -14,7 +14,7 @@ public:
     ~CountCharMass();
     vector<int> DataAccum(const vector<int>& dataVec1);
     void DataVectorOut();
-
+    void DataSocodShow();
     void DataAnalyse(vector<int>& dataVec);
     vector<int>* GetData();
 private:
