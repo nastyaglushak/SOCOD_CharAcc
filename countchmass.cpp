@@ -14,6 +14,13 @@ CountCharMass::~CountCharMass(){
     cout<<"Class Destructor"<<endl;
 }
 
+void CountCharMass::DataSocodShow(){
+    cout<<"SOCOD Data"<<endl;
+    socod->GetRandomData();
+    socod->ProcessData();
+    socod->DataVectorOut();
+    cout<<endl;
+}
 vector<int> CountCharMass::DataAccum(const vector<int>& dataVec1) {
     for(size_t i=0; i<dataVec1.size(); ++i){
         cout<<dataVec1[i]<<" "<<inValData[i]<<" "<<i<<endl;
