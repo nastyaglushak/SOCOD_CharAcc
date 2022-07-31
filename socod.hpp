@@ -18,6 +18,7 @@ class SOCOD{
     public:
         SOCOD();
         ~SOCOD();
+        int GetChNum();
         void GetDataFromFile();
         void GetRandomData();
         void ProcessData();
