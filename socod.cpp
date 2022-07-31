@@ -10,9 +10,12 @@ SOCOD::~SOCOD(){
     delete processData;
     cout<<"SOCOD Destructor"<<endl;
 }
+int SOCOD::GetChNum(){
+    return chNum;
+}
 void SOCOD::GetRandomData(){
     acquiredData->clear();
-    for (int i=0; i != THRNum*chNum; ++i){
+    for (size_t i=0; i != THRNum*chNum; ++i){
         acquiredData->push_back(1+rand()/((RAND_MAX + 1u)/10));
     }
 }
@@ -30,7 +33,7 @@ void SOCOD::GetDataFromFile(){
 }
 void SOCOD::ProcessData(){
     processData->clear();
-    for (int i=0; i<acquiredData->size(); i=i+4){
+    for (size_t i=0; i<acquiredData->size(); i=i+4){
         //cout<<"i "<<i<<" "<<acquiredData->at(i)<<endl;
         processData->push_back(acquiredData->at(i));
     }
