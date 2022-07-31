@@ -4,16 +4,8 @@
 void PrintData(vector<int> dataIn, string mes);
 
 int main(){
-    //SOCOD TestSocod;
     CountCharMass TestClass(4,5);
-    //Test of SOCOD class
-    /*for(int i=0; i<5; ++i){
-        std::cout<<"Iter "<<i<<endl;
-        TestSocod.GetRandomData();
-        TestSocod.ProcessData();
-        TestSocod.DataVectorOut();
-    }*/
-    TestClass.DataSocodShow();
+    TestClass.DataAccum();
     return 0;
 }
 
