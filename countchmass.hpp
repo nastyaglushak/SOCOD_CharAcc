@@ -8,21 +8,32 @@
 #include"socod.hpp"
 using namespace std;
 
+/*One Frame Format (Number of Frames (set by the user))
+->chNum (0..96)->
+|CntNum (max 255)
+////////////////////////////////
+Data Repository Structure (accumData=oneAccumData*CntNum)
+->oneAccumData (CntNum=0)->
+->oneAccumData (CntNum=1)->
+..............
+*/
+
 class CountCharMass {
 public:
-    CountCharMass(int ChNum, int CntNum);
+    CountCharMass(int FrNum, int CntNum);
     ~CountCharMass();
-    vector<int> DataAccum(const vector<int>& dataVec1);
-    void DataVectorOut();
-    void DataSocodShow();
-    void DataAnalyse(vector<int>& dataVec);
-    vector<int>* GetData();
+    void GetDataSocod();
+    void OneDataAccum();
+    void DataAccum();
+    void CreateZeroVector();
+    void ShowData();
+    vector<int>* GetAccumData();
 private:
     SOCOD *socod;
-    CountCharMass *countarr;
-    int ChNum; //number of characteristics
+    int FrNum; //number of characteristics
     int CntNum;//number of counts
-    vector<int>* inData;//address of input data array
-    vector<int> inValData;//input data array
+    vector<int>* inData;//input data array
+    vector<int>* oneAccumData;
+    vector<int>* accumData;//data array accumulator
 };
 #endif 
