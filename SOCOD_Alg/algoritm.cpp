@@ -2,11 +2,58 @@
 
 Algorithm::Algorithm(){
 	cout<<"Algorithm Constructor"<<endl;
+	inData=new vector<vector<int>>();
+	allCntChar=new vector<int>() ;
 }
 
 Algorithm::~Algorithm(){
 	cout<<"Algorithm Destructor"<<endl;
+	delete inData;
+	delete allCntChar;
+	delete thrArr;
 }
+
+void Algorithm::LoadDataFile (){
+
+	string line;
+	int data;
+
+	ifstream ifile("test.txt", ios::in);
+	if (ifile.is_open()){
+		while (ifile>>line){
+			data=stof(line);
+			allCntChar->push_back(data);
+		}		
+	}
+	ifile.close();
+
+}
+
+//Setting an array of thresholds
+void Algorithm::SetTHRArr(int size, int step){
+	thrArr=new vector<int>(size);
+
+	for (int i=0; i<size; i++){
+		thrArr->push_back(step*i);
+	}
+}
+
+int Algorithm::LoadDataArray(){
+	//Set algoritm parameters
+	int size=sizeof (allCntChar)/sizeof (allCntChar[0]);
+
+	int thrStep=round(GlTHR/size);
+	int iterNum=static_cast<int>(round(logbase(thrStep, 2)));
+
+	vector<int>dataCh;
+	inData->push_back(vector<int>(dataCh));
+}
+
+void Algorithm::SetCntNum(int cntNum){
+	this->cntNum=cntNum;
+	cout<<"CntNum "<<cntNum<<endl;
+}
+
 
 void Algorithm::SlideWindow(int wSize){
 	vector<int> l,r;
@@ -14,69 +61,24 @@ void Algorithm::SlideWindow(int wSize){
 
 }
 
-pair<int,float> FifthCounts(float mass[], int size, float ref){
-	float fifnum, fifmax=0;
-	float fifmin=ref;
+//While integer
+int Algorithm::SeachFifthCounts(int refValue, vector<int> dataIn){
+	int fifnum, fifmax=0;
+	int fifmin=refValue;
 	int i=0;
-	for (i=0; i<size; i++){
-		if (fifmin<mass[i] && fifmin<50.0){
-			fifmin=mass[i];
+	for (i=0; i<dataIn.size(); ++i){
+		if (fifmin<dataIn[i] && fifmin<50){
+			fifmin=dataIn[i];
 			//cout<<"MIN"<<fifmin<<endl;
-		}else if (mass[i+1]>50.0){
-			fifmax=mass[i+1];
+		}else if (dataIn[i+1]>50.0){
+			fifmax=dataIn[i+1];
 			//cout<<"MAX"<<fifmax<<endl;
 			break;
 		}
 	}
 	fifnum=fifmin+(fifmax-fifmin)/2;
 	//cout<<"Finish "<<fifmax <<" "<<fifmin<<endl;
-	return pair<int,float>(i,fifnum); 
+	return fifnum; 
 }
 
-float** DataArray(float datamas[]){
 
-	float **arr=new float* [row];
-	for (int i=0; i<row; i++){
-		arr[i]=new float [column];
-	}
-
-	for (int j=0; j<row; j++){
-		for(int k=0; k<column; k++){
-			arr[j][k]=datamas[k+column*j];
-		}
-	}
-	return arr;
-}
-double logbase(double a, double base)
-{
-   return log(a) / log(base);
-}
-
-float* THRarr(int size, int thrStep){
-	float *thr=new float [size];
-
-	for (int i=0; i<size; i++){
-		thr[i]=thrStep*i;
-	}
-	return thr;
-}
-
-float* DataInput (){
-
-	float *CountChar=new float [10];
-	string line;
-	int i=0;
-	float data;
-
-	ifstream ifile("test.txt", ios::in);
-	if (ifile.is_open()){
-		while (ifile>>line){
-			data=stof(line);
-			CountChar[i]=data;
-			i++;
-		}		
-	}
-	ifile.close();
-
-	return CountChar;
-}
