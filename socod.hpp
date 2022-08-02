@@ -1,6 +1,8 @@
 #ifndef SOCOD_HPP
 #define SOCOD_HPP
 
+#pragma once
+
 #include <iostream>
 #include<vector>
 #include<string>

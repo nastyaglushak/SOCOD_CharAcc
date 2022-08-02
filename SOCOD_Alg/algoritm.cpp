@@ -1,5 +1,19 @@
 #include"algoritm.hpp"
 
+Algorithm::Algorithm(){
+	cout<<"Algorithm Constructor"<<endl;
+}
+
+Algorithm::~Algorithm(){
+	cout<<"Algorithm Destructor"<<endl;
+}
+
+void Algorithm::SlideWindow(int wSize){
+	vector<int> l,r;
+	
+
+}
+
 pair<int,float> FifthCounts(float mass[], int size, float ref){
 	float fifnum, fifmax=0;
 	float fifmin=ref;

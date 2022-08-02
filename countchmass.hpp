@@ -1,6 +1,8 @@
 #ifndef COUNTCHMASS_HPP
 #define COUNTCHMASS_HPP
 
+#pragma once
+
 #include <iostream>
 #include<vector>
 #include<string>
