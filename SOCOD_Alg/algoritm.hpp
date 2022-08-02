@@ -8,6 +8,9 @@
 ////////////////////////////////////////
 There are two types of algorithm: using global THR and using individual THR
 */
+
+#pragma once
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -20,28 +23,27 @@ using namespace std;
 const int GlTHR=256;
 const int InTHR=64;
 
-const int row = 2;
-const int column = 5;
-
 class Algorithm{
     private:
         const int chNum=96;
         int cntNum;
+        int thrArrSize;
+        vector<vector<int>> *inData; //two-dimensional array of input data
+        vector<int> *allCntChar;//one-dimensional array of input data
+        vector<int> *thrArr;
     public:
         Algorithm();
         ~Algorithm();
-        void SetCntNum(int cntNum);
+        void LoadDataFile ();
         int LoadDataArray();
-        void SeachFifthCounts();
+        void SetTHRArr(int size, int step);
+        void SetCntNum(int cntNum);
+        
+        int SeachFifthCounts(int refValue, vector<int> dataIn);
         void SlideWindow(int wSize);
         void CountForCode();
 };
 
-
-pair<int,float> FifthCounts(float mass[], int size, float ref);
-float** DataArray(float datamas[]);
-float* THRarr(int size, int thrStep);
-double logbase(double a, double base);
-float* DataInput ();
+double logbase(double a, double base){return log(a) / log(base);};
 
 #endif
