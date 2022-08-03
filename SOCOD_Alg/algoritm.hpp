@@ -17,6 +17,7 @@ There are two types of algorithm: using global THR and using individual THR
 #include <cmath>
 #include <fstream>
 #include <stack>
+#include<iterator>
 
 using namespace std;
 
@@ -25,25 +26,32 @@ const int InTHR=64;
 
 class Algorithm{
     private:
-        const int chNum=96;
-        int cntNum;
-        int thrArrSize;
+        struct AlgoritmParameters{
+            int ArrSize;//full number of input array 
+            int THRStep;//full range divide to cntNum
+            int IterNum;//how many iterration you should for seaching 50% of counts
+        } alPar;
+
+        const int chNum=96;//number of channnels
+        int cntNum;//number of counts in one characteristics
+
         vector<vector<int>> *inData; //two-dimensional array of input data
         vector<int> *allCntChar;//one-dimensional array of input data
         vector<int> *thrArr;
     public:
         Algorithm();
         ~Algorithm();
-        void LoadDataFile ();
-        int LoadDataArray();
-        void SetTHRArr(int size, int step);
+        void LoadDataFile();
+        void SetAlPar();
+        void SetTHRArr();
+        void PerformInData();
         void SetCntNum(int cntNum);
-        
+        void ShowOneXData(vector<int>& data, string mes);
+        void ShowTwoXData(vector<vector<int>>& data, string mes);
+
         int SeachFifthCounts(int refValue, vector<int> dataIn);
         void SlideWindow(int wSize);
-        void CountForCode();
+        void CountForCode();    
 };
-
-double logbase(double a, double base){return log(a) / log(base);};
 
 #endif
