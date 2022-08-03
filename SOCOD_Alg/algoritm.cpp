@@ -14,7 +14,6 @@ Algorithm::~Algorithm(){
 }
 
 void Algorithm::LoadDataFile (){
-
 	string line;
 	int data;
 
@@ -26,27 +25,39 @@ void Algorithm::LoadDataFile (){
 		}		
 	}
 	ifile.close();
-
+	ShowOneXData(*allCntChar, "Input data");
 }
 
-//Setting an array of thresholds
-void Algorithm::SetTHRArr(int size, int step){
-	thrArr=new vector<int>(size);
+double logbase(double a, double base){return log(a) / log(base);};
 
-	for (int i=0; i<size; i++){
-		thrArr->push_back(step*i);
+//Set algoritm parameters
+void Algorithm::SetAlPar(){
+	LoadDataFile();
+	
+	alPar.ArrSize=allCntChar->size();
+	alPar.THRStep=round(GlTHR/alPar.ArrSize);
+	alPar.IterNum=static_cast<int>(round(logbase(alPar.THRStep, 2)));
+	cout<<"Array Parameters "<<endl;
+	cout<<"size "<<alPar.ArrSize<<" thrStep "<<alPar.THRStep<<" iterNum "<<alPar.IterNum<<endl;
+}
+
+//Set an array of thresholds
+void Algorithm::SetTHRArr(){
+	SetAlPar();
+
+	thrArr=new vector<int>(alPar.ArrSize);
+
+	for (int i=0; i<alPar.ArrSize; i++){
+		thrArr->push_back(alPar.THRStep*i);
 	}
+	ShowOneXData(*thrArr, "THR Array");
 }
 
-int Algorithm::LoadDataArray(){
-	//Set algoritm parameters
-	int size=sizeof (allCntChar)/sizeof (allCntChar[0]);
-
-	int thrStep=round(GlTHR/size);
-	int iterNum=static_cast<int>(round(logbase(thrStep, 2)));
-
-	vector<int>dataCh;
-	inData->push_back(vector<int>(dataCh));
+//Print one-dimensional array
+void Algorithm::ShowOneXData(vector<int>& data, string mes){
+    cout<<mes<<endl;
+    copy(data.begin(), data.end(),ostream_iterator<int>(cout, " "));
+    cout<<endl;
 }
 
 void Algorithm::SetCntNum(int cntNum){
@@ -54,11 +65,24 @@ void Algorithm::SetCntNum(int cntNum){
 	cout<<"CntNum "<<cntNum<<endl;
 }
 
+//Perform one-dimensional data array to two-dimentional array
+void Algorithm::PerformInData(){
+	vector<int>dataCh{1,2,3};
+	for (int i=0; i<5;++i){
+		inData->push_back(vector<int>(dataCh));
+	}
+	ShowTwoXData(*inData,"Perform Data Out");
+}
 
-void Algorithm::SlideWindow(int wSize){
-	vector<int> l,r;
-	
-
+//Print two-dimensional array
+void Algorithm::ShowTwoXData(vector<vector<int>>& data, string mes){
+    cout<<mes<<endl;
+	for(int i=0; i<data.size();++i){
+		for(int j=0; j<data[i].size();++j){
+			cout<<data[i][j]<<" ";
+		}
+	}
+	cout<<endl;
 }
 
 //While integer
@@ -81,4 +105,8 @@ int Algorithm::SeachFifthCounts(int refValue, vector<int> dataIn){
 	return fifnum; 
 }
 
+//Slide Window Method
+void Algorithm::SlideWindow(int wSize){
+	vector<int> l,r;
+}
 
