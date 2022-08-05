@@ -32,7 +32,7 @@ class Algorithm{
             int IterNum;//how many iterration you should for seaching 50% of counts
         } alPar;
 
-        const int chNum=96;//number of channnels
+        const int chNum=4;//number of channnels
         int cntNum;//number of counts in one characteristics
 
         vector<vector<int>> *inData; //two-dimensional array of input data
