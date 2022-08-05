@@ -68,10 +68,11 @@ void Algorithm::SetCntNum(int cntNum){
 //Perform one-dimensional data array to two-dimentional array
 void Algorithm::PerformInData(){
 	vector<int> dataCh;
-	for(int i=0; i<cntNum; i++){
-		for (int k=0; k<chNum; ++k){
-			dataCh.push_back(allCntChar->at(i*(cntNum-1)+k));
-			if (k==chNum-1){
+	for(int i=0; i<chNum; i++){ //(0..4)
+		for (int k=0; k<cntNum; ++k){ //(0..5)
+			//cout<<"Data Ind "<<(k*chNum+i)<<endl;
+			dataCh.push_back(allCntChar->at(k*chNum+i));
+			if (k==cntNum-1){
 				inData->push_back(vector<int>(dataCh));
 				dataCh.clear();}
 		}
@@ -94,7 +95,9 @@ void Algorithm::ShowTwoXData(vector<vector<int>>& data, string mes){
 	cout<<endl;
 }
 
-//While integer
+/* 
+First stage of algoritm. First itteration done over integer numbers. 
+*/
 int Algorithm::SeachFifthCounts(int refValue, vector<int> dataIn){
 	int fifnum, fifmax=0;
 	int fifmin=refValue;
