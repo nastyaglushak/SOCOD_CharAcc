@@ -67,9 +67,14 @@ void Algorithm::SetCntNum(int cntNum){
 
 //Perform one-dimensional data array to two-dimentional array
 void Algorithm::PerformInData(){
-	vector<int>dataCh{1,2,3};
-	for (int i=0; i<5;++i){
-		inData->push_back(vector<int>(dataCh));
+	vector<int> dataCh;
+	for(int i=0; i<cntNum; i++){
+		for (int k=0; k<chNum; ++k){
+			dataCh.push_back(allCntChar->at(i*(cntNum-1)+k));
+			if (k==chNum-1){
+				inData->push_back(vector<int>(dataCh));
+				dataCh.clear();}
+		}
 	}
 	ShowTwoXData(*inData,"Perform Data Out");
 }
@@ -82,6 +87,10 @@ void Algorithm::ShowTwoXData(vector<vector<int>>& data, string mes){
 			cout<<data[i][j]<<" ";
 		}
 	}
+	cout<<endl;
+
+	cout<<"One string out"<<endl;
+	copy(data[1].begin(), data[1].end(),ostream_iterator<int>(cout, " "));
 	cout<<endl;
 }
 
