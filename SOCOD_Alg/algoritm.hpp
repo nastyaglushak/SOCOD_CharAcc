@@ -45,7 +45,7 @@ class Algorithm{
         void SetAlPar();
         void SetTHRArr();
         void PerformInData();
-        void SetCntNum(int cntNum);
+        void SetCntNum(int cntNum);//return numbers of one characteristic (find from input array)
         void ShowOneXData(vector<int>& data, string mes);
         void ShowTwoXData(vector<vector<int>>& data, string mes);
 
