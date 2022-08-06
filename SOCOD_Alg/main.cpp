@@ -6,5 +6,6 @@ int main(){
 	//TestAlg.SetAlPar();
 	TestAlg.SetTHRArr();
 	TestAlg.PerformInData();
+	TestAlg.SeachFifthCounts(0);
 	return 0;
 }
