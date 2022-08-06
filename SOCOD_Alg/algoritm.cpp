@@ -95,26 +95,76 @@ void Algorithm::ShowTwoXData(vector<vector<int>>& data, string mes){
 	cout<<endl;
 }
 
-/* 
-First stage of algoritm. First itteration done over integer numbers. 
-*/
-int Algorithm::SeachFifthCounts(int refValue, vector<int> dataIn){
-	int fifnum, fifmax=0;
-	int fifmin=refValue;
-	int i=0;
-	for (i=0; i<dataIn.size(); ++i){
-		if (fifmin<dataIn[i] && fifmin<50){
-			fifmin=dataIn[i];
-			//cout<<"MIN"<<fifmin<<endl;
-		}else if (dataIn[i+1]>50.0){
-			fifmax=dataIn[i+1];
-			//cout<<"MAX"<<fifmax<<endl;
+int findFifthCounts(vector<int> &chChar, float refValue, float midValue){
+	float fifnum, fifmax=0;
+	float fifmin=refValue;
+
+	for (int i=0; i<chChar.size(); ++i){
+		if (fifmin<chChar[i] && fifmin<midValue){
+			fifmin=chChar[i];
+			cout<<"MIN "<<fifmin<<endl;
+		}else if (chChar[i]>midValue){
+			fifmax=chChar[i];
+			cout<<"MAX "<<fifmax<<endl;
 			break;
 		}
 	}
 	fifnum=fifmin+(fifmax-fifmin)/2;
-	//cout<<"Finish "<<fifmax <<" "<<fifmin<<endl;
-	return fifnum; 
+	cout<<"Finish "<<fifmax <<" "<<fifmin<<" "<<fifnum<<endl;
+	return fifmin;
+}
+
+int indFind(vector<int> &dataIn, int value ){
+	int i;
+	for(i=0;i<dataIn.size();i++){
+		if(dataIn[i]==value)
+  		{break;}
+	}
+	return i;
+}
+
+
+int Algorithm::SeachFifthCounts(float refValue){
+
+	vector<int> chChar;
+	float midValue;
+	int fifmin, fifminInd;
+	vector<int> fifData,fifInd;
+	vector<int> FifTHRArr;
+	
+	for (int i=0; i<chNum; ++i){
+		chChar=inData->at(i);
+		midValue = 0.5*(*max_element(chChar.begin(), chChar.end()));
+		cout<<"Ref value: "<<midValue<<endl;
+		//Find 50% of count
+		fifmin=findFifthCounts(chChar, refValue, midValue);
+		fifData.push_back(fifmin);
+		//fifminInd=*find(chChar.begin(),chChar.end(),fifmin);//not work in my programm
+		fifminInd=indFind(chChar, fifmin);
+		cout<<"FifInd "<<fifminInd<<" "<<endl;
+		fifInd.push_back(fifminInd);
+	}
+
+	//Then collerate with threshold
+	vector<int> THRIn{2,4,6,8,10};//I haven't figured out the array of thresholds yet
+
+	for(int i=0; i<fifInd.size();++i){
+		FifTHRArr.push_back(THRIn.at(fifInd[i]));
+	}
+
+	cout<<"Fifnum out"<<endl;
+	copy(fifData.begin(), fifData.end(),ostream_iterator<int>(cout, " "));
+	cout<<endl;
+
+	cout<<"FifInd out"<<endl;
+	copy(fifInd.begin(), fifInd.end(),ostream_iterator<int>(cout, " "));
+	cout<<endl;
+
+	cout<<"FifTHR out"<<endl;
+	copy(FifTHRArr.begin(), FifTHRArr.end(),ostream_iterator<int>(cout, " "));
+	cout<<endl;
+
+	return 0;
 }
 
 //Slide Window Method
