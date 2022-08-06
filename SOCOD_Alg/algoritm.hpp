@@ -18,6 +18,7 @@ There are two types of algorithm: using global THR and using individual THR
 #include <fstream>
 #include <stack>
 #include<iterator>
+#include <algorithm>
 
 using namespace std;
 
@@ -49,7 +50,7 @@ class Algorithm{
         void ShowOneXData(vector<int>& data, string mes);
         void ShowTwoXData(vector<vector<int>>& data, string mes);
 
-        int SeachFifthCounts(int refValue, vector<int> dataIn);
+        int SeachFifthCounts(float refValue);//refValue-value, which the seaching starts
         void SlideWindow(int wSize);
         void CountForCode();    
 };
