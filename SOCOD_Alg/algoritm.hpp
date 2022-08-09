@@ -19,6 +19,7 @@ There are two types of algorithm: using global THR and using individual THR
 #include <stack>
 #include<iterator>
 #include <algorithm>
+#include <numeric>
 
 using namespace std;
 
@@ -49,10 +50,10 @@ class Algorithm{
         void SetCntNum(int cntNum);//return numbers of one characteristic (find from input array)
         void ShowOneXData(vector<int>& data, string mes);
         void ShowTwoXData(vector<vector<int>>& data, string mes);
-
         int SeachFifthCounts(float refValue);//refValue-value, which the seaching starts
+        
         void SlideWindow(int wSize);
-        void CountForCode();    
+        void CountCorCode();    
 };
 
 #endif
