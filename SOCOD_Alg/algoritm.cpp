@@ -169,6 +169,19 @@ int Algorithm::SeachFifthCounts(float refValue){
 
 //Slide Window Method
 void Algorithm::SlideWindow(int wSize){
+	vector<int> exVec={1,2,3,4,5,6,8,9,10,11,12};
 	vector<int> l,r;
+	vector<int> outVec;
+	int itNum=exVec.size()-1;
+	for (int i=0; i<wSize; ++i){
+		outVec.push_back(exVec[i]);
+	}
+	int sum=accumulate(exVec.begin(), exVec.end(),0);
+	//reduce(exVec.begin(),exVec.end());
+	cout<<"sum "<<sum<<endl;
 }
 
+//Count coorection code
+void Algorithm::CountCorCode(){
+
+}
