@@ -37,7 +37,7 @@ class Algorithm{
         const int chNum=4;//number of channnels
         int cntNum;//number of counts in one characteristics
 
-        vector<vector<int>> *inData; //two-dimensional array of input data
+        vector<vector<int> > *inData; //two-dimensional array of input data
         vector<int> *allCntChar;//one-dimensional array of input data
         vector<int> *thrArr;
     public:
@@ -49,7 +49,7 @@ class Algorithm{
         void PerformInData();
         void SetCntNum(int cntNum);//return numbers of one characteristic (find from input array)
         void ShowOneXData(vector<int>& data, string mes);
-        void ShowTwoXData(vector<vector<int>>& data, string mes);
+        void ShowTwoXData(vector<vector<int> >& data, string mes);
         int SeachFifthCounts(float refValue);//refValue-value, which the seaching starts
         
         void SlideWindow(int wSize);

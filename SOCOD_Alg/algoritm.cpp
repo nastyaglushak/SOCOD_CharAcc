@@ -2,7 +2,7 @@
 
 Algorithm::Algorithm(){
 	cout<<"Algorithm Constructor"<<endl;
-	inData=new vector<vector<int>>();
+	inData=new vector<vector<int> >();
 	allCntChar=new vector<int>() ;
 }
 
@@ -81,7 +81,7 @@ void Algorithm::PerformInData(){
 }
 
 //Print two-dimensional array
-void Algorithm::ShowTwoXData(vector<vector<int>>& data, string mes){
+void Algorithm::ShowTwoXData(vector<vector<int> >& data, string mes){
     cout<<mes<<endl;
 	for(int i=0; i<data.size();++i){
 		for(int j=0; j<data[i].size();++j){
@@ -146,7 +146,7 @@ int Algorithm::SeachFifthCounts(float refValue){
 	}
 
 	//Then collerate with threshold
-	vector<int> THRIn{2,4,6,8,10};//I haven't figured out the array of thresholds yet
+	vector<int> THRIn={2,4,6,8,10};//I haven't figured out the array of thresholds yet
 
 	for(int i=0; i<fifInd.size();++i){
 		FifTHRArr.push_back(THRIn.at(fifInd[i]));
@@ -170,15 +170,22 @@ int Algorithm::SeachFifthCounts(float refValue){
 //Slide Window Method
 void Algorithm::SlideWindow(int wSize){
 	vector<int> exVec={1,2,3,4,5,6,8,9,10,11,12};
-	vector<int> l,r;
 	vector<int> outVec;
-	int itNum=exVec.size()-1;
-	for (int i=0; i<wSize; ++i){
-		outVec.push_back(exVec[i]);
+
+	//outVec.pop_back();//delete last member
+	//outVec.push_back();//add element to the end
+
+	cout<<exVec.at(wSize-1)<<endl;
+	while (exVec.size()>wSize){
+		outVec.push_back(accumulate(exVec.begin(), exVec.end(),0));
+		copy(outVec.begin(), outVec.end(),ostream_iterator<int>(cout, " "));
+		cout<<endl;
+
+		exVec.erase(exVec.begin());//delete first member
+		copy(exVec.begin(), exVec.end(),ostream_iterator<int>(cout, " "));
+		cout<<endl;
 	}
-	int sum=accumulate(exVec.begin(), exVec.end(),0);
-	//reduce(exVec.begin(),exVec.end());
-	cout<<"sum "<<sum<<endl;
+	
 }
 
 //Count coorection code
