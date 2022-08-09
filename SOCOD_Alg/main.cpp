@@ -7,5 +7,6 @@ int main(){
 	TestAlg.SetTHRArr();
 	TestAlg.PerformInData();
 	TestAlg.SeachFifthCounts(0);
+	TestAlg.SlideWindow(3);
 	return 0;
 }
