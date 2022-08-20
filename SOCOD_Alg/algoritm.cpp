@@ -152,40 +152,47 @@ int Algorithm::SeachFifthCounts(float refValue){
 		FifTHRArr.push_back(THRIn.at(fifInd[i]));
 	}
 
-	cout<<"Fifnum out"<<endl;
-	copy(fifData.begin(), fifData.end(),ostream_iterator<int>(cout, " "));
-	cout<<endl;
-
-	cout<<"FifInd out"<<endl;
-	copy(fifInd.begin(), fifInd.end(),ostream_iterator<int>(cout, " "));
-	cout<<endl;
-
-	cout<<"FifTHR out"<<endl;
-	copy(FifTHRArr.begin(), FifTHRArr.end(),ostream_iterator<int>(cout, " "));
-	cout<<endl;
+	ShowOneXData(fifData, "Fifnum out");
+	ShowOneXData(fifInd, "FifInd out");
+	ShowOneXData(FifTHRArr, "FifTHR out");
 
 	return 0;
 }
 
+void Algorithm::SortTHR(int THRstep){
+	vector<int> exVec;
+	for (size_t i=0; i != 20; ++i){
+        exVec.push_back(1+rand()/((RAND_MAX + 1u)/10));
+    }
+	ShowOneXData(exVec, "ExVec THR out ");
+
+}
+
 //Slide Window Method
 void Algorithm::SlideWindow(int wSize){
-	vector<int> exVec={1,2,3,4,5,6,8,9,10,11,12};
-	vector<int> outVec;
+	vector<int> exVec={1,2,3,4,5,6,8,9,10,11,12};//11-3=8//sorted vector
+	vector<int> outVec, workVec;
 
 	//outVec.pop_back();//delete last member
 	//outVec.push_back();//add element to the end
 
-	cout<<exVec.at(wSize-1)<<endl;
 	while (exVec.size()>wSize){
-		outVec.push_back(accumulate(exVec.begin(), exVec.end(),0));
-		copy(outVec.begin(), outVec.end(),ostream_iterator<int>(cout, " "));
-		cout<<endl;
+		for (int i=0; i<wSize; ++i){
+			workVec.push_back(exVec.at(i));
+		}
+		ShowOneXData(workVec, "Work vec ");
+		
+		outVec.push_back(accumulate(workVec.begin(), workVec.end(),0));
+		ShowOneXData(outVec, "Out vec ");
 
 		exVec.erase(exVec.begin());//delete first member
-		copy(exVec.begin(), exVec.end(),ostream_iterator<int>(cout, " "));
-		cout<<endl;
+		ShowOneXData(exVec, "Ex vec ");
+		workVec.clear();
 	}
-	
+	int max_sum=*max_element(outVec.begin(), outVec.end());
+	int left_num=distance(outVec.begin(),max_element(outVec.begin(), outVec.end()))+1;//number of iter+1
+	int right_num=left_num+wSize;
+	cout<<"Max sum "<<max_sum<<" "<<left_num<<" "<<right_num<<endl;
 }
 
 //Count coorection code
