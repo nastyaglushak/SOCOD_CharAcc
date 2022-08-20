@@ -3,8 +3,9 @@
 /*Algorithm stages:
 0. Loading of counting characteristics data (x=96, y=numbers of counts); (LoadDataArray)
 1. Seaching 50% of counts; (SeachFifthCounts)
-2. Sliding window method; (SlideWindow)
-3. Counting corrections codes (CountCorCode)
+2. Sorted data; (SortTHR)
+3. Sliding window method; (SlideWindow)
+4. Counting corrections codes (CountCorCode)
 ////////////////////////////////////////
 There are two types of algorithm: using global THR and using individual THR
 */
@@ -51,7 +52,7 @@ class Algorithm{
         void ShowOneXData(vector<int>& data, string mes);
         void ShowTwoXData(vector<vector<int> >& data, string mes);
         int SeachFifthCounts(float refValue);//refValue-value, which the seaching starts
-        
+        void SortTHR(int THRstep);
         void SlideWindow(int wSize);
         void CountCorCode();    
 };
